@@ -16,9 +16,6 @@ The `data/processed` folder contains pre-computed geometric features and targets
 
 It also includes cached SHAP values in `data/processed/shap/`, allowing immediate reproduction of ML and plotting steps without re-running 10k simulations.
 
-If a required pre-computed file is missing, the loader raises:
-"Pre-computed data [filename] not found. Please download from [Zenodo Link Placeholder] or run simulation script."
-
 ## Usage
 
 ```bash
@@ -42,3 +39,4 @@ src/
 ## Citation
 
 TBD (paper under review)
+
