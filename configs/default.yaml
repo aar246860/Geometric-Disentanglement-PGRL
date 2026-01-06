@@ -1,0 +1,83 @@
+pcc:
+  Lx: 100.0
+  Ly: 100.0
+  n_cells: 10000
+  nx_grid: 401
+  ny_grid: 401
+  rng_seed: 1234
+  use_float32_fields: true
+  fixed_mesh_seed: 2025
+
+data:
+  processed_dir: "data/processed"
+  shap_dir: "data/processed/shap"
+  rebuilt_csv: "Mission_Hydro_Hybrid_DPL_Rebuilt.csv"
+  best_csv: "Mission_Hydro_Hybrid_DPL_Best.csv"
+
+simulation:
+  n_samples: 10000
+  decimate: 2
+  fmax_factor: 0.1
+  k_pe: 25
+  ridge: 1.0e-10
+  ls_ridge: 1.0e-10
+  target_freq_index: 2
+  penalty: 1.0e15
+
+dpl:
+  darcy_trap_eps: 1.0e-6
+
+bc:
+  hL_mean: 6.0
+  hL_span: 2.0
+  hR_const: 0.0
+  experiments:
+    - name: midband_multisine
+      T: 4000.0
+      dt: 1.0
+      K_pe: 25
+    - name: lowband_multisine
+      T: 16000.0
+      dt: 1.0
+      K_pe: 25
+
+pgrl:
+  cutoff_n: 9200
+  seed: 42
+  tau_q_params:
+    max_depth: 5
+    learning_rate: 0.018
+    n_estimators: 500
+  tau_h_params:
+    max_depth: 5
+    learning_rate: 0.02
+    n_estimators: 500
+
+shap:
+  background_k: 20
+  sample_size: 300
+
+sindy:
+  taus_min: 2.0
+  taus_max: 20000.0
+  taus_n: 12
+  deriv_orders: [0, 1, 2]
+  max_total_terms: 6
+  max_mem_terms: 3
+  universal_max_rel: 0.12
+  n_bands: 3
+
+param_bounds:
+  mu_lnK: [-12.0, -2.0]
+  mu_lnSs: [-10.0, -4.0]
+  sigma_lnK: [0.1, 4.0]
+  corr_len_K: [1.0, 70.0]
+  sigma_lnSs: [0.1, 2.5]
+  corr_len_Ss: [1.0, 70.0]
+  rho: [-0.95, 0.95]
+  model_type_float: [0.0, 1.0]
+
+demo:
+  n_samples: 4
+  n_cells: 600
+  seed: 123
